@@ -343,7 +343,7 @@ namespace NvAPIWrapper.DRS
             }
 
             var comparerType = typeof(EqualityComparer<>).MakeGenericType(value.GetType());
-            var comparer = comparerType.GetProperty(nameof(EqualityComparer<object>.Default))?.GetValue(null);
+            var comparer = comparerType.GetProperty(nameof(EqualityComparer<object>.Default))?.GetValue(null,null);
 
             if (!(comparer is IEqualityComparer equalityComparer))
             {
