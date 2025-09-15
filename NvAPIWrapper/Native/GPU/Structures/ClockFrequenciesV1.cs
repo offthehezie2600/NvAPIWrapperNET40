@@ -1,5 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
+using corlib.System.Collections.Generic;
+using corlib.System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.InteropServices;
 using NvAPIWrapper.Native.Attributes;
@@ -27,10 +28,11 @@ namespace NvAPIWrapper.Native.GPU.Structures
         /// <inheritdoc />
         public IReadOnlyDictionary<PublicClockDomain, ClockDomainInfo> Clocks
         {
-            get => _Clocks
-                .Select((value, index) => new {index, value})
+            get =>
+                (IReadOnlyDictionary<PublicClockDomain, ClockDomainInfo>)_Clocks
+                .Select((value, index) => new { index, value })
                 .Where(arg => Enum.IsDefined(typeof(PublicClockDomain), arg.index))
-                .ToDictionary(arg => (PublicClockDomain) arg.index, arg => arg.value);
+                .ToDictionary(arg => (PublicClockDomain)arg.index, arg => arg.value);
         }
 
         /// <inheritdoc />

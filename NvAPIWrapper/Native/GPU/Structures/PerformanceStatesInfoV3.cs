@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using corlib.System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using NvAPIWrapper.Native.Attributes;
@@ -70,7 +70,7 @@ namespace NvAPIWrapper.Native.GPU.Structures
             {
                 var voltages = (int) _NumberOfVoltages;
 
-                return PerformanceStates.ToDictionary(
+                return (IReadOnlyDictionary<PerformanceStateId, PerformanceStatesInfoV2.PerformanceState.PerformanceStatesVoltage[]>)PerformanceStates.ToDictionary(
                     state => state.StateId,
                     state => state._Voltages.Take(voltages).ToArray()
                 );
@@ -83,7 +83,7 @@ namespace NvAPIWrapper.Native.GPU.Structures
         {
             get
             {
-                return PerformanceStatesVoltages.ToDictionary(
+                return (IReadOnlyDictionary<PerformanceStateId, IPerformanceStatesVoltage[]>)PerformanceStatesVoltages.ToDictionary(
                     pair => pair.Key,
                     pair => pair.Value.Cast<IPerformanceStatesVoltage>().ToArray()
                 );
@@ -101,7 +101,7 @@ namespace NvAPIWrapper.Native.GPU.Structures
             {
                 var clocks = (int) _NumberOfClocks;
 
-                return PerformanceStates.ToDictionary(
+                return (IReadOnlyDictionary<PerformanceStateId, PerformanceStatesInfoV2.PerformanceState.PerformanceStatesClock[]>)PerformanceStates.ToDictionary(
                     state => state.StateId,
                     state => state._Clocks.Take(clocks).ToArray()
                 );
@@ -114,7 +114,7 @@ namespace NvAPIWrapper.Native.GPU.Structures
         {
             get
             {
-                return PerformanceStatesClocks.ToDictionary(
+                return (IReadOnlyDictionary<PerformanceStateId, IPerformanceStatesClock[]>)PerformanceStatesClocks.ToDictionary(
                     pair => pair.Key,
                     pair => pair.Value.Cast<IPerformanceStatesClock>().ToArray()
                 );

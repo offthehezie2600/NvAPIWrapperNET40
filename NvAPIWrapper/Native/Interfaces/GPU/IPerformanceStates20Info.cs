@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using corlib.System.Collections.Generic;
 using NvAPIWrapper.Native.GPU;
 
 namespace NvAPIWrapper.Native.Interfaces.GPU

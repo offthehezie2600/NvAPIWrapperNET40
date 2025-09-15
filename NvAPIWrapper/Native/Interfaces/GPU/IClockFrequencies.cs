@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using NvAPIWrapper.Native.GPU;
 using NvAPIWrapper.Native.GPU.Structures;
+using corlib.System.Collections.Generic;
 
 namespace NvAPIWrapper.Native.Interfaces.GPU
 {

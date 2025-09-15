@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using corlib.System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using NvAPIWrapper.Native.Attributes;
@@ -94,7 +94,7 @@ namespace NvAPIWrapper.Native.GPU.Structures
             {
                 var clocks = (int) _NumberOfClocks;
 
-                return PerformanceStates.ToDictionary(
+                return (IReadOnlyDictionary<PerformanceStateId, PerformanceStates20ClockEntryV1[]>)PerformanceStates.ToDictionary(
                     state20 => state20.StateId,
                     state20 => state20._Clocks.Take(clocks).ToArray()
                 );
@@ -106,7 +106,7 @@ namespace NvAPIWrapper.Native.GPU.Structures
         {
             get
             {
-                return Clocks.ToDictionary(
+                return (IReadOnlyDictionary<PerformanceStateId, IPerformanceStates20ClockEntry[]>)Clocks.ToDictionary(
                     pair => pair.Key,
                     pair => pair.Value.Cast<IPerformanceStates20ClockEntry>().ToArray()
                 );
@@ -122,7 +122,7 @@ namespace NvAPIWrapper.Native.GPU.Structures
             {
                 var baseVoltages = (int) _NumberOfBaseVoltages;
 
-                return PerformanceStates.ToDictionary(
+                return (IReadOnlyDictionary<PerformanceStateId, PerformanceStates20BaseVoltageEntryV1[]>)PerformanceStates.ToDictionary(
                     state20 => state20.StateId,
                     state20 => state20._BaseVoltages.Take(baseVoltages).ToArray()
                 );
@@ -134,7 +134,7 @@ namespace NvAPIWrapper.Native.GPU.Structures
         {
             get
             {
-                return Voltages.ToDictionary(
+                return (IReadOnlyDictionary<PerformanceStateId, IPerformanceStates20VoltageEntry[]>)Voltages.ToDictionary(
                     pair => pair.Key,
                     pair => pair.Value.Cast<IPerformanceStates20VoltageEntry>().ToArray()
                 );
