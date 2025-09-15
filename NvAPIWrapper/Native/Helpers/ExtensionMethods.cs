@@ -150,7 +150,8 @@ namespace NvAPIWrapper.Native.Helpers
 
                 if (type.GetInterfaces().Any(i => i == typeof(IInitializable) || i == typeof(IAllocatable)))
                 {
-                    foreach (var field in type.GetRuntimeFields())
+                    foreach (var field in type.GetFields(BindingFlags.Instance | BindingFlags.Static
+                        | BindingFlags.Public | BindingFlags.NonPublic))
                     {
                         if (field.IsStatic || field.IsLiteral)
                         {
